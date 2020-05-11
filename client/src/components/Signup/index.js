@@ -42,8 +42,7 @@ function Signup(props) {
             
             // retrieve result from server
             const { data } = 
-                await axios.post('https://johncagetribute.org:5000/graphql', requestBody)
-                // await axios.post('http://localhost:5000/graphql', requestBody)
+                await axios.post('http://localhost:5000/graphql', requestBody)
 
             if (data.errors) {
                 setError(data.errors[0].message)
