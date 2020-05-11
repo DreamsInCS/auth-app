@@ -16,7 +16,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@jct-clu
 // Middleware
 app.use(
     cors(),
-    bodyParser.json()
+    bodyParser.json(),
 )
 
 app.use(
@@ -27,6 +27,17 @@ app.use(
         rootValue: graphQLResolvers
     })
 )
+
+if (process.env.NODE_ENV === "production") {
+    app.use(
+        express.static(path.join(__dirname, "client/build")),
+
+    )
+}
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {

@@ -28,7 +28,7 @@ async function authenticate(dispatch) {
             }
 
             const { data } = 
-                await axios.post('http://localhost:5000/graphql', requestBody)
+                await axios.post('/graphql', requestBody)
 
             const user = await data.data.verifyToken
 

@@ -35,7 +35,8 @@ function Login(props) {
             }
 
             const { data } = 
-                await axios.post('http://localhost:5000/graphql', requestBody)
+                await axios.post('/graphql', requestBody)
+                // await axios.post('http://localhost:5000/graphql', requestBody)
 
             if (data.errors) {
                 setError(data.errors[0].message)
